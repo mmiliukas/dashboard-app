@@ -1,11 +1,30 @@
 import * as dashboard from '@wix/dashboard';
-import { Card, Page, Text } from '@wix/design-system';
+import { Card, Page, Table } from '@wix/design-system';
 import '@wix/design-system/styles.global.css';
 import * as sdk from '@wix/sdk';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import './App.css';
 
+type KeyValuePair = { key: string; value: string };
+
+const columns = [
+  {
+    title: 'Param',
+    render: (row: KeyValuePair) => row.key,
+  },
+  {
+    title: 'Value',
+    render: (row: KeyValuePair) => row.value,
+  },
+];
+
 function App() {
+  const searchParams = useMemo<KeyValuePair[]>(() => {
+    const params = new URLSearchParams(window.location.search);
+    return [...params.entries()].map(([key, value]) => {
+      return { key, value }
+    });
+  }, []);
 
   useEffect(() => {
     // @ts-ignore
@@ -22,7 +41,7 @@ function App() {
           <Card.Header title="Search parameters" />
           <Card.Divider />
           <Card.Content>
-            <Text><pre>{window.location.search}</pre></Text>
+            <Table skin="standard" data={searchParams} columns={columns} />
           </Card.Content>
         </Card>
       </Page.Content>
