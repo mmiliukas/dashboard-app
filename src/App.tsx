@@ -1,7 +1,7 @@
-import * as dashboard from '@wix/dashboard';
-import { Card, Page, Table } from '@wix/design-system';
+import { dashboard, useDashboard, withDashboard } from '@wix/dashboard-react';
+import { Button, Card, Page, Table } from '@wix/design-system';
 import '@wix/design-system/styles.global.css';
-import * as sdk from '@wix/sdk';
+import * as sdk from '@wix/sdk-react';
 import { useEffect, useMemo } from 'react';
 import './App.css';
 
@@ -19,6 +19,8 @@ const columns = [
 ];
 
 function App() {
+  const { showToast, openMediaManager, openModal } = useDashboard();
+
   const searchParams = useMemo<KeyValuePair[]>(() => {
     const params = new URLSearchParams(window.location.search);
     const result = [...params.entries()].map(([key, value]) => {
@@ -48,6 +50,15 @@ function App() {
       <Page.Header title="Dashboard App" />
       <Page.Content>
         <Card>
+          <Card.Header title="Dashboard API" />
+          <Card.Divider />
+          <Card.Content>
+            <Button onClick={() => openModal('c2f57e2b-d321-4f9e-9a95-92174950f612')}>Open Modal</Button>
+            <Button onClick={() => openMediaManager()}>Open Media Manager</Button>
+            <Button onClick={() => showToast({ message: 'You clicked me. Great success!' })}>Show Toast</Button>
+          </Card.Content>
+        </Card>
+        <Card>
           <Card.Header title="Search parameters" />
           <Card.Divider />
           <Card.Content>
@@ -59,4 +70,4 @@ function App() {
   )
 }
 
-export default App
+export default withDashboard(App);
