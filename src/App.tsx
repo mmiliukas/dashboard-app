@@ -14,16 +14,25 @@ const columns = [
   },
   {
     title: 'Value',
-    render: (row: KeyValuePair) => row.value,
+    render: (row: KeyValuePair) => <pre style={{ whiteSpace: 'wrap', wordBreak: 'break-all' }}>{row.value}</pre>,
   },
 ];
 
 function App() {
   const searchParams = useMemo<KeyValuePair[]>(() => {
     const params = new URLSearchParams(window.location.search);
-    return [...params.entries()].map(([key, value]) => {
+    const result = [...params.entries()].map(([key, value]) => {
       return { key, value }
     });
+    if (params.has('instance')) {
+      const [, instance] = params.get('instance')!.split('.');
+      result.push({ key: 'instance', value: atob(instance) });
+    }
+    if (params.has('authorizationCode')) {
+      const [, instance] = params.get('authorizationCode')!.split('.');
+      result.push({ key: 'authorizationCode', value: atob(instance) });
+    }
+    return result
   }, []);
 
   useEffect(() => {
