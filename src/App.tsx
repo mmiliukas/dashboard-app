@@ -53,7 +53,7 @@ function App() {
           <Card.Header title="Dashboard API" />
           <Card.Divider />
           <Card.Content>
-            <Button onClick={() => openModal('c2f57e2b-d321-4f9e-9a95-92174950f612')}>Open Modal</Button>
+            <Button onClick={() => openModal('be156542-c7c4-4ce6-b5a9-c1470570f5c6')}>Open Modal</Button>
             <Button onClick={() => openMediaManager()}>Open Media Manager</Button>
             <Button onClick={() => showToast({ message: 'You clicked me. Great success!' })}>Show Toast</Button>
           </Card.Content>
