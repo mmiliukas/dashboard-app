@@ -29,8 +29,9 @@ function App() {
       result.push({ key: 'instance', value: atob(instance) });
     }
     if (params.has('authorizationCode')) {
-      const [, instance] = params.get('authorizationCode')!.split('.');
-      result.push({ key: 'authorizationCode', value: atob(instance) });
+      const [, details, code] = params.get('authorizationCode')!.split('.');
+      result.push({ key: 'authorizationCode[1]', value: atob(details) });
+      result.push({ key: 'authorizationCode[2]', value: atob(code) });
     }
     return result
   }, []);
