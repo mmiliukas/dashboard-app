@@ -44,6 +44,8 @@ function App() {
     window.app_sdk = sdk;
     // @ts-ignore
     window.app_dashboard = dashboard;
+    // @ts-ignore
+    window.app_campaigns = campaigns;
   }, []);
 
   const fetchCampaigns = useCallback(() => {
