@@ -1,5 +1,5 @@
 import { dashboard, useDashboard, withDashboard } from '@wix/dashboard-react';
-import { Button, Card, Cell, Layout, Page, Table } from '@wix/design-system';
+import { Box, Button, Card, Cell, Layout, Page, Table } from '@wix/design-system';
 import '@wix/design-system/styles.global.css';
 import { campaigns } from '@wix/email-marketing';
 import * as sdk from '@wix/sdk-react';
@@ -47,6 +47,8 @@ function App() {
   }, []);
 
   const fetchCampaigns = useCallback(() => {
+    console.log({ campaigns });
+
     campaigns.listCampaigns({
       campaignType: campaigns.CampaignTypeEnum.EMAIL_MARKETING,
     }).then((result) => {
@@ -67,9 +69,11 @@ function App() {
               <Card.Header title="Dashboard API" />
               <Card.Divider />
               <Card.Content>
-                <Button onClick={() => openModal('be156542-c7c4-4ce6-b5a9-c1470570f5c6')}>Open Modal</Button>
-                <Button onClick={() => openMediaManager()}>Open Media Manager</Button>
-                <Button onClick={() => showToast({ message: 'You clicked me. Great success!' })}>Show Toast</Button>
+                <Box gap="12px">
+                  <Button size="small" onClick={() => openModal('be156542-c7c4-4ce6-b5a9-c1470570f5c6')}>Open Modal</Button>
+                  <Button size="small" onClick={() => openMediaManager()}>Open Media Manager</Button>
+                  <Button size="small" onClick={() => showToast({ message: 'You clicked me. Great success!' })}>Show Toast</Button>
+                </Box>
               </Card.Content>
             </Card>
           </Cell>
