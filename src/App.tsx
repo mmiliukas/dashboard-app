@@ -1,10 +1,10 @@
 import { dashboard } from '@wix/dashboard';
 import { useDashboard, withDashboard } from '@wix/dashboard-react';
-import { Box, Button, Card, Cell, Layout, Page, Table } from '@wix/design-system';
+import { Box, Button, Card, Cell, Image, Layout, Page, Table } from '@wix/design-system';
 import '@wix/design-system/styles.global.css';
 import { campaigns } from '@wix/email-marketing';
 import * as sdk from '@wix/sdk';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import './App.css';
 
 type KeyValuePair = { key: string; value: string };
@@ -22,6 +22,7 @@ const columns = [
 
 function App() {
   const { showToast, openMediaManager, openModal } = useDashboard();
+  const [list, setList] = useState<campaigns.Campaign[]>([]);
 
   const searchParams = useMemo<KeyValuePair[]>(() => {
     const params = new URLSearchParams(window.location.search);
@@ -58,10 +59,11 @@ function App() {
       },
     });
 
-    client.campaigns.listCampaigns({
+    return client.campaigns.listCampaigns({
       campaignType: campaigns.CampaignTypeEnum.EMAIL_MARKETING,
     }).then((result) => {
-      console.log(result);
+      setList(result.campaigns || []);
+      return result;
     })
   }, []);
 
@@ -72,6 +74,28 @@ function App() {
         <Layout cols={1}>
           <Cell span={1}>
             <Button onClick={fetchCampaigns}>Fetch campaigns</Button>
+          </Cell>
+          <Cell span={1}>
+            <Table skin="standard" data={list} columns={[
+              {
+                title: 'Title',
+                render: (row: campaigns.Campaign) => row.title,
+              },
+              {
+                title: 'Status',
+                render: (row: campaigns.Campaign) => row.status,
+              },
+              {
+                title: 'Created At',
+                render: (row: campaigns.Campaign) => row.dateCreated?.toLocaleString(),
+              },
+              {
+                title: 'Image',
+                render: (row: campaigns.Campaign) => (
+                  row.firstImageUrl && <Image width="64px" src={row.firstImageUrl} />
+                ),
+              }
+            ]} />
           </Cell>
           <Cell span={1}>
             <Card>
