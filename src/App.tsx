@@ -1,8 +1,9 @@
 import { dashboard, useDashboard, withDashboard } from '@wix/dashboard-react';
-import { Button, Card, Page, Table } from '@wix/design-system';
+import { Button, Card, Cell, Layout, Page, Table } from '@wix/design-system';
 import '@wix/design-system/styles.global.css';
+import { campaigns } from '@wix/email-marketing';
 import * as sdk from '@wix/sdk-react';
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import './App.css';
 
 type KeyValuePair = { key: string; value: string };
@@ -45,26 +46,43 @@ function App() {
     window.app_dashboard = dashboard;
   }, []);
 
+  const fetchCampaigns = useCallback(() => {
+    campaigns.listCampaigns({
+      campaignType: campaigns.CampaignTypeEnum.EMAIL_MARKETING,
+    }).then((result) => {
+      console.log(result);
+    })
+  }, []);
+
   return (
     <Page height="100vh">
       <Page.Header title="Dashboard App" />
       <Page.Content>
-        <Card>
-          <Card.Header title="Dashboard API" />
-          <Card.Divider />
-          <Card.Content>
-            <Button onClick={() => openModal('be156542-c7c4-4ce6-b5a9-c1470570f5c6')}>Open Modal</Button>
-            <Button onClick={() => openMediaManager()}>Open Media Manager</Button>
-            <Button onClick={() => showToast({ message: 'You clicked me. Great success!' })}>Show Toast</Button>
-          </Card.Content>
-        </Card>
-        <Card>
-          <Card.Header title="Search parameters" />
-          <Card.Divider />
-          <Card.Content>
-            <Table skin="standard" data={searchParams} columns={columns} />
-          </Card.Content>
-        </Card>
+        <Layout cols={1}>
+          <Cell>
+            <Button onClick={fetchCampaigns}>Fetch campaigns</Button>
+          </Cell>
+          <Cell span={1}>
+            <Card>
+              <Card.Header title="Dashboard API" />
+              <Card.Divider />
+              <Card.Content>
+                <Button onClick={() => openModal('be156542-c7c4-4ce6-b5a9-c1470570f5c6')}>Open Modal</Button>
+                <Button onClick={() => openMediaManager()}>Open Media Manager</Button>
+                <Button onClick={() => showToast({ message: 'You clicked me. Great success!' })}>Show Toast</Button>
+              </Card.Content>
+            </Card>
+          </Cell>
+          <Cell span={1}>
+            <Card>
+              <Card.Header title="Search parameters" />
+              <Card.Divider />
+              <Card.Content>
+                <Table skin="standard" data={searchParams} columns={columns} />
+              </Card.Content>
+            </Card>
+          </Cell>
+        </Layout>
       </Page.Content>
     </Page>
   )

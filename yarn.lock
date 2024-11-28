@@ -939,6 +939,39 @@
     tslib "^2.8.1"
     wix-design-systems-locale-utils "1.160.0"
 
+"@wix/email-marketing@^1.0.96":
+  version "1.0.96"
+  resolved "https://registry.yarnpkg.com/@wix/email-marketing/-/email-marketing-1.0.96.tgz#761a6641d69d9b00be84ec6aa34b979dfca3de3c"
+  integrity sha512-pW99w4sp0pCPbTtRxLyTAz6IGZTfaSfVEhN2rEtk48e+dQkW486JQiKMipgEvHepyRt6LKzkyqmGHOGi+sXmqA==
+  dependencies:
+    "@wix/email-marketing_account-details" "1.0.32"
+    "@wix/email-marketing_campaigns" "1.0.48"
+    "@wix/email-marketing_sender-details" "1.0.35"
+
+"@wix/email-marketing_account-details@1.0.32":
+  version "1.0.32"
+  resolved "https://registry.yarnpkg.com/@wix/email-marketing_account-details/-/email-marketing_account-details-1.0.32.tgz#825fd0c111800cb7d3cd85c013aed4d0a440854d"
+  integrity sha512-UNJlylM4MbTTfjUflmpDQhr43u5G1bE47gR1DdhX1iwKIBOak99YK1NZCECcH16lopql/pkihg1rtO1aO2F5jA==
+  dependencies:
+    "@wix/sdk-runtime" "^0.3.22"
+    "@wix/sdk-types" "^1.12.4"
+
+"@wix/email-marketing_campaigns@1.0.48":
+  version "1.0.48"
+  resolved "https://registry.yarnpkg.com/@wix/email-marketing_campaigns/-/email-marketing_campaigns-1.0.48.tgz#14780e933c298dfee8168b2812f42ceb3491b607"
+  integrity sha512-GHum1/BU28UYx+JZXuRaSdaMpFaHJcVFWQght69Gse0MUhUHivVoS752d/sK9o+jjr89iSrqU0bFVE8/ycr3cQ==
+  dependencies:
+    "@wix/sdk-runtime" "^0.3.22"
+    "@wix/sdk-types" "^1.12.4"
+
+"@wix/email-marketing_sender-details@1.0.35":
+  version "1.0.35"
+  resolved "https://registry.yarnpkg.com/@wix/email-marketing_sender-details/-/email-marketing_sender-details-1.0.35.tgz#f7382c6442f9f62e09b0fd2bb93b1d68e19bc177"
+  integrity sha512-9jVIFBvitCPFdf+oh/nrhepQkQWR8Tf4I0IP5QutekZaUetPvuR2vt1Rms8qAbRQCHT9YP9r6XshNhD9HrgUrQ==
+  dependencies:
+    "@wix/sdk-runtime" "^0.3.22"
+    "@wix/sdk-types" "^1.12.4"
+
 "@wix/feedback-loop-structure@^1.32.0":
   version "1.32.0"
   resolved "https://registry.yarnpkg.com/@wix/feedback-loop-structure/-/feedback-loop-structure-1.32.0.tgz#268c4b0b8ef51a4c9ea40687e1a037cafa563034"
