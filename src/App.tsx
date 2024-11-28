@@ -2,7 +2,7 @@ import { dashboard, useDashboard, withDashboard } from '@wix/dashboard-react';
 import { Box, Button, Card, Cell, Layout, Page, Table } from '@wix/design-system';
 import '@wix/design-system/styles.global.css';
 import { campaigns } from '@wix/email-marketing';
-import * as sdk from '@wix/sdk-react';
+import * as sdk from '@wix/sdk';
 import { useCallback, useEffect, useMemo } from 'react';
 import './App.css';
 
@@ -49,9 +49,14 @@ function App() {
   }, []);
 
   const fetchCampaigns = useCallback(() => {
-    console.log({ campaigns });
+    const client = sdk.createClient({
+      auth: dashboard.auth(),
+      modules: {
+        campaigns,
+      },
+    });
 
-    campaigns.listCampaigns({
+    client.campaigns.listCampaigns({
       campaignType: campaigns.CampaignTypeEnum.EMAIL_MARKETING,
     }).then((result) => {
       console.log(result);
