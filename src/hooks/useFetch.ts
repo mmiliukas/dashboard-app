@@ -12,7 +12,12 @@ export function useFetch() {
     return useCallback((pathname: string, params: Record<string, string> = {}) => {
         const fullUrl = new URL("https://dashboard-app-server-isy0.onrender.com");
         fullUrl.pathname = pathname;
-        fullUrl.search = new URLSearchParams(params).toString();
+
+        const search = new URLSearchParams(params);
+        search.set('instance', instance);
+
+        fullUrl.search = search.toString();
+
         return fetch(fullUrl.toString(), { method: 'GET' }).then(result => result.json());
     }, [instance]);
 }

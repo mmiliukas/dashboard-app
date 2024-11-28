@@ -4,6 +4,7 @@ import '@wix/design-system/styles.global.css';
 import './App.css';
 import { CampaignTable } from './components/campaign-table';
 import { DashboardActions } from './components/dashboard-actions';
+import { ParseInstance } from './components/parse-instance';
 import { PingPong } from './components/ping-pong';
 import { SearchParams } from './components/search-params';
 
@@ -13,6 +14,9 @@ function App() {
       <Page.Header title="Dashboard App" />
       <Page.Content>
         <Layout cols={1}>
+          <Cell span={1}>
+            <ParseInstance />
+          </Cell>
           <Cell span={1}>
             <PingPong />
           </Cell>
