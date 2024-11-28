@@ -59,7 +59,7 @@ function App() {
       <Page.Header title="Dashboard App" />
       <Page.Content>
         <Layout cols={1}>
-          <Cell>
+          <Cell span={1}>
             <Button onClick={fetchCampaigns}>Fetch campaigns</Button>
           </Cell>
           <Cell span={1}>
