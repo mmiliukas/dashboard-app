@@ -1,4 +1,5 @@
-import { dashboard, useDashboard, withDashboard } from '@wix/dashboard-react';
+import { dashboard } from '@wix/dashboard';
+import { useDashboard, withDashboard } from '@wix/dashboard-react';
 import { Box, Button, Card, Cell, Layout, Page, Table } from '@wix/design-system';
 import '@wix/design-system/styles.global.css';
 import { campaigns } from '@wix/email-marketing';
@@ -50,6 +51,7 @@ function App() {
 
   const fetchCampaigns = useCallback(() => {
     const client = sdk.createClient({
+      host: dashboard.host(),
       auth: dashboard.auth(),
       modules: {
         campaigns,
