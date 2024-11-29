@@ -18,7 +18,13 @@ export function usePost() {
 
         fullUrl.search = search.toString();
 
-        return fetch(fullUrl.toString(), { method: 'POST', body: JSON.stringify(params) }).then(result => result.json());
+        return fetch(fullUrl.toString(), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(params)
+        }).then(result => result.json());
     }, [instance]);
 }
 
