@@ -7,6 +7,7 @@ import { DashboardActions } from './components/dashboard-actions';
 import { ParseInstance } from './components/parse-instance';
 import { PingPong } from './components/ping-pong';
 import { SearchParams } from './components/search-params';
+import { Subscriptions } from './components/subscriptions';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
       <Page.Header title="Dashboard App" />
       <Page.Content>
         <Layout cols={1}>
+          <Cell span={1}>
+            <Subscriptions />
+          </Cell>
           <Cell span={1}>
             <ParseInstance />
           </Cell>
