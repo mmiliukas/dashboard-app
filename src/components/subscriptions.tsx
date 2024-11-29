@@ -1,10 +1,12 @@
-import { Button, Card, FormField, Input } from '@wix/design-system';
+import { useDashboard } from '@wix/dashboard-react';
+import { Button, Card, Cell, FormField, Input, Layout } from '@wix/design-system';
 import { useCallback, useEffect, useState } from 'react';
 import { useFetch, usePost } from '../hooks/useFetch';
 
 export function Subscriptions() {
     const fetch = useFetch();
     const post = usePost();
+    const { showToast } = useDashboard();
 
     const [email, setEmail] = useState<string>("");
 
@@ -19,8 +21,16 @@ export function Subscriptions() {
     const subscribe = useCallback(() => {
         post('/subscriptions', { email }).then(result => {
             console.log(result);
-        }).catch(error => {
+            showToast({
+                message: 'Subscribed',
+                type: "success",
+            });
+        }).catch((error) => {
             console.error(error);
+            showToast({
+                message: 'Subscription failed',
+                type: "error",
+            });
         });
     }, [fetch, email]);
 
@@ -29,10 +39,16 @@ export function Subscriptions() {
             <Card.Header title="Subscriptions" />
             <Card.Divider />
             <Card.Content>
-                <FormField label="Email">
-                    <Input value={email} onChange={e => setEmail(e.target.value)} />
-                </FormField>"
-                <Button size="small" priority="secondary" onClick={subscribe}>Subscribe</Button>
+                <Layout cols={1}>
+                    <Cell span={1}>
+                        <FormField label="Email">
+                            <Input value={email} onChange={e => setEmail(e.target.value)} />
+                        </FormField>
+                    </Cell>
+                    <Cell span={1}>
+                        <Button size="small" priority="secondary" onClick={subscribe}>Subscribe</Button>
+                    </Cell>
+                </Layout>
             </Card.Content>
         </Card>
     );
