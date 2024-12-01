@@ -49,7 +49,7 @@ export function Subscriptions() {
                     <Layout cols={1}>
                         <Cell span={1}>
                             <FormField label="Email">
-                                <Input value={email} onChange={e => setEmail(e.target.value)} />
+                                <Input value={email} onChange={(e: any) => setEmail(e.target.value)} />
                             </FormField>
                         </Cell>
                         <Cell span={1}>
@@ -65,15 +65,15 @@ export function Subscriptions() {
                 },
                 {
                     title: 'Email',
-                    render: (row) => row.email,
+                    render: (row: any) => row.email,
                 },
                 {
                     title: 'Subscription status',
-                    render: (row) => <Badge size="small">{row.subscriptionStatus}</Badge>
+                    render: (row: any) => <Badge size="small">{row.subscriptionStatus}</Badge>
                 },
                 {
                     title: 'Created At',
-                    render: (row) => row._createdDate,
+                    render: (row: any) => row._createdDate,
                 },
             ]} />
         </>
