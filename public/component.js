@@ -69,9 +69,15 @@ const thankYouHtml = `
 `;
 
 class MyAwesomeEmailTemplates extends HTMLElement {
+    static observedAttributes = ["wixconfig", "wixConfig"];
+
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
+    };
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        console.log('attributeChangedCallback', name, oldValue, newValue);
     };
 
     connectedCallback() {
