@@ -1,3 +1,11 @@
+import { site } from '@wix/site';
+import { createClient } from '@wix/sdk';
+
+const client = createClient({
+    host: site.host(),
+    auth: site.auth(),
+});
+
 const styles = `
   <style>
     * {
@@ -86,6 +94,7 @@ class MyAwesomeEmailTemplates extends HTMLElement {
 
     async subscribe() {
         console.trace('subscribe() called');
+        console.log(client);
         //     const wixConfig = JSON.parse(this.getAttribute('wixconfig') || '{}');
         //     const emailInput = this.shadowRoot.getElementById('email');
         //     const email = emailInput.value;
