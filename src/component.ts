@@ -1,5 +1,5 @@
-import { site } from '@wix/site';
 import { createClient } from '@wix/sdk';
+import { site } from '@wix/site';
 
 const client = createClient({
     host: site.host(),
