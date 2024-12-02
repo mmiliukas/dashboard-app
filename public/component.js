@@ -75,6 +75,8 @@ class MyAwesomeEmailTemplates extends HTMLElement {
     };
 
     connectedCallback() {
+      console.log(this.attributes);
+
         this.shadowRoot.innerHTML = `
       ${styles}
       ${formHtml}
